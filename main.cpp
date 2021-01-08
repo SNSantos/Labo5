@@ -21,12 +21,17 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 using namespace std;
 
 int main() {
-   unsigned a = 900 ;
-   Date nouvelAn = Date(1,1,1);
-   nouvelAn+=a;
-   Date no = nouvelAn;
-   cout << no(Format::PJJMMAAAA) << endl << nouvelAn(Format::TAAAAMMJJ)
-   << endl;
+   unsigned int a= 456;
+   Date nouvelAn = Date(25,12,1364);
+   Date nouvelDate= Date(5,5,500);
+
+
+
+
+
+   nouvelAn + a;
+   cout  << nouvelAn-nouvelDate;
+
 
 
 }

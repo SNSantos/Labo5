@@ -9,11 +9,13 @@
 
 
 enum class Format {
-   PJJMMAAAA, TJJMMAAAA, TAAAAMMJJ   };
+   TJJMMAAAA, PAAAAMMJJ,  TAAAAMMJJ, };
 
 class Date {
 
    friend std::ostream &operator<<(std::ostream &lhs, const Date &rhs);
+
+
 
    friend bool operator<(const Date &lhs, const Date &rhs);
 
@@ -30,6 +32,8 @@ class Date {
    friend Date operator+(Date lhs, unsigned rhs);
 
    friend Date operator-(Date lhs, unsigned rhs);
+
+   friend int operator-(const Date& lhs, const Date& rhs);
 
 
 public:
@@ -49,15 +53,20 @@ public:
 
    Date &operator-=(unsigned nJour);
 
-   Date &operator()(Format format);
+   std::string operator()(Format format);
 
+   unsigned  getJour() const;
+   unsigned  getMois() const;
+   unsigned  getAnnee() const;
 
+   void setJour(unsigned jour) ;
+   void setMois(unsigned mois) ;
+   void setAnnee(unsigned annee) ;
 
 private:
-   unsigned jour{};
-   unsigned mois{};
-   unsigned annee{};
-   static Format format;
+   unsigned jour;
+   unsigned mois;
+   unsigned annee;
 };
 
 #endif //LABO5_DATE_H

@@ -13,14 +13,12 @@ Compilateur    : Mingw-w64 g++ 8.1.0
 */
 
 
+#include <iomanip>
 #include "Date.h"
 #include "outilCalcul.h"
 
 using namespace std;
 
-
-
-Format Date::format = Format::PJJMMAAAA; //Le format date par défaut
 
 Date::Date() {
    *this = Date(1, 1, 1);
@@ -110,11 +108,55 @@ Date &Date::operator-=(unsigned nJour) {
    return *this;
 }
 
-Date &Date::operator()(Format format) {
-      Date::format = format;
-      return *this;
+string Date::operator()(Format format) {
+   stringstream sDate;
+
+   char separateur = '.';
+
+   switch (format) {
+      case Format::TJJMMAAAA:
+         sDate << setw(2) << setfill('0') << jour << separateur;
+         sDate << setw(2) << setfill('0') << mois << separateur;
+         sDate << setw(4) << setfill('0') << annee;
+         return sDate.str();
+      case Format::TAAAAMMJJ:
+         separateur = '-';
+         break;
+      case Format::PAAAAMMJJ:
+         break;
+      default :
+         sDate << *this;
+         return sDate.str();
+   }
+   sDate << setw(4) << setfill('0') << annee << separateur;
+   sDate << setw(2) << setfill('0') << mois << separateur;
+   sDate << setw(2) << setfill('0') << jour;
+   return sDate.str();
+
+}
+
+unsigned Date::getJour() const {
+   return jour;
+}
+
+unsigned int Date::getAnnee() const {
+   return annee;
+}
+
+unsigned Date::getMois() const {
+   return mois;
+}
+
+void Date::setJour(unsigned jour) {
+   this->jour = jour;
 }
 
 
+void Date::setMois(unsigned mois) {
+   this->mois = mois;
+}
 
+void Date::setAnnee(unsigned annee) {
+   this->annee = annee;
+}
 
