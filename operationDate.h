@@ -26,5 +26,6 @@ Date operator+( Date lhs, unsigned rhs);
 
 Date operator-( Date lhs, unsigned rhs);
 
+int operator-(const Date &lhs, const Date &rhs);
 
 #endif //LABO5_OPERATIONDATE_H
